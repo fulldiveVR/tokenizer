@@ -93,6 +93,10 @@ type Model string
 const (
 	GPT4                     Model = "gpt-4"
 	GPT35Turbo               Model = "gpt-3.5-turbo"
+	GPT35Turbo0613           Model = "gpt-3.5-turbo-0613"
+	GPT35Turbo0301           Model = "gpt-3.5-turbo-0301"
+	GPT35Turbo16K            Model = "gpt-3.5-turbo-16k"
+	GPT35Turbo16K0613        Model = "gpt-3.5-turbo-16k-0613"
 	TextEmbeddingAda002      Model = "text-embedding-ada-002"
 	TextDavinci003           Model = "text-davinci-003"
 	TextDavinci002           Model = "text-davinci-002"
@@ -159,7 +163,7 @@ func Get(encoding Encoding) (Codec, error) {
 // is returned.
 func ForModel(model Model) (Codec, error) {
 	switch model {
-	case GPT4, GPT35Turbo, TextEmbeddingAda002:
+	case GPT4, GPT35Turbo, TextEmbeddingAda002, GPT35Turbo0613, GPT35Turbo0301, GPT35Turbo16K, GPT35Turbo16K0613:
 		return Get(Cl100kBase)
 
 	case TextDavinci003, TextDavinci002, CodeDavinci001,
