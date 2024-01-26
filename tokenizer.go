@@ -92,13 +92,7 @@ type Model string
 
 const (
 	GPT4                     Model = "gpt-4"
-	GPT40613                 Model = "gpt-4-0613"
-	GPT4TurboPreview         Model = "gpt-4-1106-preview"
 	GPT35Turbo               Model = "gpt-3.5-turbo"
-	GPT35Turbo0613           Model = "gpt-3.5-turbo-0613"
-	GPT35Turbo0301           Model = "gpt-3.5-turbo-0301"
-	GPT35Turbo16K            Model = "gpt-3.5-turbo-16k"
-	GPT35Turbo16K0613        Model = "gpt-3.5-turbo-16k-0613"
 	TextEmbeddingAda002      Model = "text-embedding-ada-002"
 	TextDavinci003           Model = "text-davinci-003"
 	TextDavinci002           Model = "text-davinci-002"
@@ -165,10 +159,6 @@ func Get(encoding Encoding) (Codec, error) {
 // is returned.
 func ForModel(model Model) (Codec, error) {
 	switch model {
-	case GPT4, GPT40613, GPT35Turbo, TextEmbeddingAda002, GPT35Turbo0613, GPT35Turbo0301, GPT35Turbo16K, GPT35Turbo16K0613,
-		GPT4TurboPreview:
-		return Get(Cl100kBase)
-
 	case TextDavinci003, TextDavinci002, CodeDavinci001,
 		CodeDavinci002, CodeCushman002, CodeCushman001,
 		DavinciCodex, CushmanCodex:
@@ -187,6 +177,6 @@ func ForModel(model Model) (Codec, error) {
 	case GPT2:
 		return Get(GPT2Enc)
 	default:
-		return nil, ErrModelNotSupported
+		return Get(Cl100kBase)
 	}
 }
